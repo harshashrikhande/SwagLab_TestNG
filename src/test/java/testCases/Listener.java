@@ -21,7 +21,16 @@ public class Listener implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+		TakesScreenshot obj = (TakesScreenshot) BaseClass.driver;
+		File source = obj.getScreenshotAs(OutputType.FILE);
+		File target = new File("screenshot/" + result.getName() + ".png");
+		try {
+			FileUtils.copyFile(source,target);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
